@@ -27,4 +27,4 @@ MIT
 
 ## Author Information
 
-Overskylab
+Opsta (Thailand) Co.,Ltd.

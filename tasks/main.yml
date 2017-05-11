@@ -3,7 +3,6 @@
   include_vars: "{{ item }}"
   with_first_found:
     - "{{ ansible_os_family }}.yml"
-    - default.yml
 
 - include: gitlab_pre.yml
 - include: gitlab_install.yml

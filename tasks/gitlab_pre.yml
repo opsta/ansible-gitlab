@@ -1,14 +1,13 @@
 ---
-- name: Install Gitlab dependencies
+- name: Install GitLab dependencies
   apt:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
     update_cache: yes
   with_items:
     - "{{ gitlab_apt_dependencies }}"
 
-- name: Run script for check before install Gitlab CE
-  command: >
-    curl -L {{ gitlab_script_url }} | bash
+- name: Run script to check system and add repository for GitLab CE
+  shell: "curl -L {{ gitlab_script_url }} | bash"
   when:
     - gitlab_script_url is defined
