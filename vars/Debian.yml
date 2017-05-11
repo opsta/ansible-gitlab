@@ -1,0 +1,10 @@
+---
+gitlab_apt_package: gitlab-ce
+
+gitlab_apt_dependencies:
+  - ca-certificates
+  - curl
+  - openssh-server
+  - postfix
+
+gitlab_script_url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh

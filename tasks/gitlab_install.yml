@@ -1,0 +1,6 @@
+---
+- name: Install Gitlab CE
+  apt:
+    name: "{{ gitlab_apt_package }}"
+    state: present
+    update_cache: yes
