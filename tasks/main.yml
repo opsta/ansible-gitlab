@@ -6,3 +6,9 @@
 
 - include: gitlab_pre.yml
 - include: gitlab_install.yml
+
+- block: # Config GitLab
+  - include: gitlab_search_config.yml
+  - include: gitlab_post.yml
+  tags:
+    - gitlab-config
