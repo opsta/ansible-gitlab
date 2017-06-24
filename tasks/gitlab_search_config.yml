@@ -28,3 +28,10 @@
   become: false
   delegate_to: 127.0.0.1
   register: gitlab_config_check
+
+- name: Check if GitLab SSL certificates is exists
+  stat:
+    path: "{{ gitlab_host_config_ssl_path }}"
+  become: false
+  delegate_to: 127.0.0.1
+  register: gitlab_config_ssl_check
