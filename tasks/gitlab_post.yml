@@ -9,6 +9,15 @@
   when: gitlab_config_check.stat.exists
   notify: Reconfigure and restart GitLab
 
+- name: Copy GitLab SSL certificates
+  copy:
+    src: "{{ gitlab_host_config_ssl_path }}"
+    dest: "{{ gitlab_config_path }}"
+  when:
+    - gitlab_config_ssl_check.stat.isdir is defined
+    - gitlab_config_ssl_check.stat.isdir
+  notify: Reconfigure and restart GitLab
+
 - name: Create backup path
   file:
     path: "{{ gitlab_config_backup_path }}"

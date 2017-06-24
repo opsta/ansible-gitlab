@@ -3,6 +3,8 @@ gitlab_search_config_path: "{{ playbook_dir }}/files/groups/{{ item }}/gitlab"
 gitlab_search_config_paths: []
 
 gitlab_host_config_file_path: "{{ gitlab_host_config_path | default(inventory_hostname) }}/gitlab.rb.j2"
+gitlab_host_config_ssl_path: "{{ gitlab_host_config_path | default(inventory_hostname) }}/ssl"
 gitlab_config_file_path: /etc/gitlab/gitlab.rb
+gitlab_config_path: /etc/gitlab
 
 gitlab_config_backup_path: /var/opt/gitlab/backups
