@@ -4,11 +4,11 @@
   with_first_found:
     - "{{ ansible_os_family }}.yml"
 
-- include: gitlab_pre.yml
-- include: gitlab_install.yml
+- include_tasks: gitlab_pre.yml
+- include_tasks: gitlab_install.yml
 
 - block: # Config GitLab
-  - include: gitlab_search_config.yml
-  - include: gitlab_post.yml
+  - include_tasks: gitlab_search_config.yml
+  - include_tasks: gitlab_post.yml
   tags:
     - gitlab-config
