@@ -1,25 +1,34 @@
 ---
+- block:
+  - name: Install GitLab dependencies
+    yum:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    with_items:
+      - "{{ gitlab_yum_dependencies }}"
+    notify:
+      - Start sshd
+      - Start postfix
+
+  - name: Enable firewalld
+    firewalld:
+      service: "{{ item.1 }}"
+      permanent: true
+      state: enabled
+      immediate: yes
+    with_indexed_items:
+      - http
+  when: ansible_os_family == "RedHat"
+
 - name: Install GitLab dependencies
-  yum:
-    name: "{{ item }}"
+  apt:
+    name: "{{ gitlab_apt_package }}"
     state: present
     update_cache: yes
-  with_items:
-    - "{{ gitlab_apt_dependencies }}"
-  notify:
-    - Start sshd
-    - Start postfix
-
-- name: Enable firewalld
-  firewalld:
-    service: "{{ item.1 }}"
-    permanent: true
-    state: enabled
-    immediate: yes
-  with_indexed_items:
-    - http
+  when: ansible_os_family == "Debain"
 
 - name: Run script to check system and add repository for GitLab CE
-  shell: "curl -s {{ gitlab_script_url }} | bash"
+  shell: "curl -L -s {{ gitlab_script_url }} | bash"
   when:
     - gitlab_script_url is defined

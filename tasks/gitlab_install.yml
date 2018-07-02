@@ -1,8 +1,18 @@
 ---
 - name: Install Gitlab CE
   yum:
+    name: "{{ gitlab_yum_package }}"
+    state: present
+    update_cache: yes
+  when:
+    - ansible_os_family == "RedHat"
+    - gitlab_yum_package is defined
+
+- name: Install Gitlab CE
+  apt:
     name: "{{ gitlab_apt_package }}"
     state: present
     update_cache: yes
   when:
+    - ansible_os_family == "Debian"
     - gitlab_apt_package is defined

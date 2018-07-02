@@ -1,7 +1,7 @@
 ---
-gitlab_apt_package: gitlab-ce
+gitlab_yum_package: gitlab-ce
 
-gitlab_apt_dependencies:
+gitlab_yum_dependencies:
   - ca-certificates
   - curl
   - policycoreutils-python

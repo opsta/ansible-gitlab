@@ -11,7 +11,7 @@
   tags:
     - gitlab_install
 
-- block:
+- block: # Configure Gitlab
   - include_tasks: gitlab_search_config.yml
   - include_tasks: gitlab_post.yml
   tags:
