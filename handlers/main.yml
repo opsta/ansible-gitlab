@@ -1,4 +1,16 @@
 ---
+- name: Start postfix
+  systemd:
+    name: postfix
+    state: started
+    enabled: yes
+
+- name: Start sshd
+  systemd:
+    name: ssh
+    state: started
+    enabled: yes
+
 - name: Reconfigure GitLab
   command: gitlab-ctl reconfigure
 

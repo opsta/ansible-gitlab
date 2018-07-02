@@ -1,6 +1,8 @@
 ---
 - name: Install Gitlab CE
-  apt:
+  yum:
     name: "{{ gitlab_apt_package }}"
     state: present
     update_cache: yes
+  when:
+    - gitlab_apt_package is defined

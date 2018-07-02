@@ -1,13 +1,25 @@
 ---
 - name: Install GitLab dependencies
-  apt:
+  yum:
     name: "{{ item }}"
     state: present
     update_cache: yes
   with_items:
     - "{{ gitlab_apt_dependencies }}"
+  notify:
+    - Start sshd
+    - Start postfix
+
+- name: Enable firewalld
+  firewalld:
+    service: "{{ item.1 }}"
+    permanent: true
+    state: enabled
+    immediate: yes
+  with_indexed_items:
+    - http
 
 - name: Run script to check system and add repository for GitLab CE
-  shell: "curl -L {{ gitlab_script_url }} | bash"
+  shell: "curl -s {{ gitlab_script_url }} | bash"
   when:
     - gitlab_script_url is defined
