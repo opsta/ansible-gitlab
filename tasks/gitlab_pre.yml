@@ -23,9 +23,11 @@
 
 - name: Install GitLab dependencies
   apt:
-    name: "{{ gitlab_apt_package }}"
+    name: "{{ item }}"
     state: present
     update_cache: yes
+  with_items:
+    - "{{ gitlab_apt_dependencies }}"
   when: ansible_os_family == "Debain"
 
 - name: Run script to check system and add repository for GitLab CE
