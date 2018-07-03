@@ -11,7 +11,13 @@
       - Start sshd
       - Start postfix
 
-  - name: Enable firewalld
+  - name: Ensure firewalld is enabled
+    systemd:
+      name: firewalld
+      state: started
+      enabled: yes
+
+  - name: Allow some firewall to using
     firewalld:
       service: "{{ item.1 }}"
       permanent: true
