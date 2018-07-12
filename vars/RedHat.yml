@@ -1,0 +1,11 @@
+---
+gitlab_yum_package: gitlab-ce
+
+gitlab_yum_dependencies:
+  - ca-certificates
+  - curl
+  - policycoreutils-python
+  - openssh-server
+  - postfix
+
+gitlab_script_url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh

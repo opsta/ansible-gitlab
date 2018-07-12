@@ -2,13 +2,17 @@
 - name: Include OS family specific variables
   include_vars: "{{ item }}"
   with_first_found:
-    - "{{ ansible_os_family }}.yml"
+    - files: "{{ ansible_os_family }}.yml"
+      skip: true
 
-- include_tasks: gitlab_pre.yml
-- include_tasks: gitlab_install.yml
+- block:
+  - include_tasks: gitlab_pre.yml
+  - include_tasks: gitlab_install.yml
+  tags:
+    - gitlab_install
 
-- block: # Config GitLab
+- block: # Configure Gitlab
   - include_tasks: gitlab_search_config.yml
   - include_tasks: gitlab_post.yml
   tags:
-    - gitlab-config
+    - gitlab_configure
