@@ -34,7 +34,7 @@
     update_cache: yes
   with_items:
     - "{{ gitlab_apt_dependencies }}"
-  when: ansible_os_family == "Debain"
+  when: ansible_os_family == "Debian"
 
 - name: Run script to check system and add repository for GitLab CE
   shell: "curl -L -s {{ gitlab_script_url }} | bash"
