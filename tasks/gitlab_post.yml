@@ -1,12 +1,19 @@
 ---
 - name: Copy GitLab configuration file
   template:
-    src: "{{ gitlab_host_config_file_path }}"
+    src: gitlab.rb.j2
     dest: "{{ gitlab_config_file_path }}"
     owner: root
     group: root
     mode: 0644
-  when: gitlab_config_check.stat.exists
+
+- name: Replace configurations
+  lineinfile:
+    dest: "{{ gitlab_config_file_path }}"
+    state: present
+    regexp: "^\\#* *{{ item.config_prefix }}\\['{{ item.config_key }}'\\] = (.*)$"
+    line: "{{ item.config_prefix }}['{{ item.config_key }}'] = {% if item.config_quote is defined and item.config_quote %}'{{ item.config_value }}'{% else %}{{ item.config_value }}{% endif %}"
+  with_items: "{{ gitlab_rb_configs }}"
   notify: Reconfigure and restart GitLab
 
 - name: Copy GitLab SSL certificates
