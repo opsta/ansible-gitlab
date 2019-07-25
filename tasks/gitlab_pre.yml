@@ -2,14 +2,20 @@
 - block:
   - name: Install GitLab dependencies
     yum:
-      name: "{{ item }}"
+      name: "{{ gitlab_yum_dependencies }}"
       state: present
       update_cache: yes
-    with_items:
-      - "{{ gitlab_yum_dependencies }}"
     notify:
       - Start sshd
+
+  - name: Install Postfix
+    yum:
+      name: postfix
+      state: present
+      update_cache: yes
+    notify:
       - Start postfix
+    when: not gitlab_use_external_smtp
 
   - name: Ensure firewalld is enabled
     systemd:
@@ -19,21 +25,29 @@
 
   - name: Allow some firewall to using
     firewalld:
-      service: "{{ item.1 }}"
+      service: http
       permanent: true
       state: enabled
       immediate: yes
-    with_indexed_items:
-      - http
   when: ansible_os_family == "RedHat"
 
-- name: Install GitLab dependencies
-  apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - "{{ gitlab_apt_dependencies }}"
+- block:
+  - name: Install GitLab dependencies
+    apt:
+      name: "{{ gitlab_apt_dependencies }}"
+      state: present
+      update_cache: yes
+
+  - name: Install Postfix
+    apt:
+      name: postfix
+      state: present
+      update_cache: yes
+    with_items:
+      - postfix
+    notify:
+      - Start postfix
+    when: not gitlab_use_external_smtp
   when: ansible_os_family == "Debian"
 
 - name: Run script to check system and add repository for GitLab CE

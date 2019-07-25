@@ -1,4 +1,5 @@
 ---
+gitlab_use_external_smtp: false
 gitlab_search_config_path: "{{ playbook_dir }}/files/groups/{{ item }}/gitlab"
 gitlab_search_config_paths: []
 

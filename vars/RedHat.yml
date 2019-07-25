@@ -2,10 +2,10 @@
 gitlab_yum_package: gitlab-ce
 
 gitlab_yum_dependencies:
-  - ca-certificates
   - curl
+  - ca-certificates
   - policycoreutils-python
   - openssh-server
-  - postfix
+  - cronie
 
 gitlab_script_url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh
