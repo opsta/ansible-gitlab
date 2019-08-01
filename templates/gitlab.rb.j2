@@ -21,6 +21,8 @@ external_url '{{ gitlab_external_url }}'
 ##!
 {% if gitlab_roles %}
 roles {{ gitlab_roles }}
+{% else %}
+# roles ['redis_sentinel_role', 'redis_master_role']
 {% endif %}
 
 ## Legend
