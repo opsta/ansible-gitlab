@@ -7,5 +7,8 @@ gitlab_yum_dependencies:
   - policycoreutils-python
   - openssh-server
   - cronie
+gitlab_firewalld_allows:
+  - http
+  - https
 
 gitlab_script_url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh

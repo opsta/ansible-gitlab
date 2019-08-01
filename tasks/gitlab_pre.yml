@@ -25,10 +25,11 @@
 
   - name: Allow some firewall to using
     firewalld:
-      service: http
+      service: "{{ item }}"
       permanent: true
       state: enabled
       immediate: yes
+    with_items: "{{ gitlab_firewalld_allows }}"
   when: ansible_os_family == "RedHat"
 
 - block:
