@@ -6,6 +6,7 @@
     owner: root
     group: root
     mode: 0644
+  notify: Reconfigure and restart GitLab
 
 - name: Replace configurations
   lineinfile:

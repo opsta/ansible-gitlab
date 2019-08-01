@@ -23,3 +23,7 @@ gitlab_config_file_path: /etc/gitlab/gitlab.rb
 gitlab_config_path: /etc/gitlab
 
 gitlab_config_backup_path: /var/opt/gitlab/backups
+
+# backward compatibility
+gitlab_search_config_paths: []
+gitlab_host_config_file_path: "{{ gitlab_host_config_path | default(inventory_hostname) }}/gitlab.rb.j2"
