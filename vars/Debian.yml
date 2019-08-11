@@ -7,3 +7,5 @@ gitlab_apt_dependencies:
   - openssh-server
 
 gitlab_script_url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+
+gitlab_ssh_service_name: ssh

@@ -1,4 +1,6 @@
 ---
+#- name: Setup sshd not to accept password
+
 - name: Copy GitLab configuration file
   template:
     src: gitlab.rb.j2

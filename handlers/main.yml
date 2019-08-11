@@ -7,7 +7,7 @@
 
 - name: Start sshd
   systemd:
-    name: ssh
+    name: "{{ gitlab_ssh_service_name }}"
     state: started
     enabled: yes
 

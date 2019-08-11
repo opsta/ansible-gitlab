@@ -17,6 +17,8 @@
       - Start postfix
     when: not gitlab_use_external_smtp
 
+  - meta: flush_handlers
+
   - name: Ensure firewalld is enabled
     systemd:
       name: firewalld
