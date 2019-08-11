@@ -11,6 +11,8 @@
       - Start sshd
       - Start postfix
 
+  - meta: flush_handlers
+
   - name: Ensure firewalld is enabled
     systemd:
       name: firewalld

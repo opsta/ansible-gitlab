@@ -9,3 +9,5 @@ gitlab_yum_dependencies:
   - postfix
 
 gitlab_script_url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh
+
+gitlab_ssh_service_name: sshd
