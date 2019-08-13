@@ -1,12 +1,13 @@
 ---
-gitlab_yum_package: gitlab-ce
+gitlab_package: gitlab-ce
 
-gitlab_yum_dependencies:
+gitlab_package_dependencies:
   - curl
   - ca-certificates
   - policycoreutils-python
   - openssh-server
   - cronie
+
 gitlab_firewalld_allows:
   - http
   - https
