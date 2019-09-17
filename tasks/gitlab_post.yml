@@ -42,7 +42,7 @@
     name: Backup GitLab
     minute: '1'
     hour: '2'
-    job: /opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=1
+    job: /opt/gitlab/bin/gitlab-backup create CRON=1
 
 - name: Setup cron to backup GitLab configuration files
   cron:
