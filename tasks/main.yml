@@ -2,8 +2,12 @@
 - name: Include OS family specific variables
   include_vars: "{{ item }}"
   with_first_found:
-    - files: "{{ ansible_os_family }}.yml"
-      skip: true
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version | int }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+  when: >
+    gitlab_package is not defined or
+    gitlab_package_dependencies is not defined
 
 - block:
   - include_tasks: gitlab_pre.yml
