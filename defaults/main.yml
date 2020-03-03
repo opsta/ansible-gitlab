@@ -16,6 +16,20 @@ gitlab_rb_configs: {}
   #   config_key: worker_processes
   #   config_value: 8
 
+gitlab_app_backup_cron: {}
+  # minute: "0"
+  # hour: "0"
+  # day: "*"
+  # weekday: "*"
+  # month: "*"
+
+gitlab_config_backup_cron: {}
+  # minute: "0"
+  # hour: "0"
+  # day: "*"
+  # weekday: "*"
+  # month: "*"
+
 gitlab_search_config_path: "{{ playbook_dir }}/files/groups/{{ item }}/gitlab"
 
 gitlab_host_config_ssl_path: "{{ gitlab_host_config_path | default(inventory_hostname) }}/ssl"
