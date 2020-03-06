@@ -16,3 +16,5 @@
 
 - name: Reconfigure and restart GitLab
   shell: gitlab-ctl reconfigure && gitlab-ctl restart
+  retries: 5
+  delay: 20
