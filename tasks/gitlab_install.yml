@@ -3,3 +3,6 @@
   package:
     name: "{{ gitlab_package }}"
     state: present
+  environment:
+    GITLAB_ROOT_EMAIL: "{{ gitlab_root_email | default(omit) }}"
+    GITLAB_ROOT_PASSWORD: "{{ gitlab_root_password | default(omit) }}"

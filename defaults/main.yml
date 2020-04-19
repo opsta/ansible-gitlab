@@ -16,6 +16,9 @@ gitlab_rb_configs: {}
   #   config_key: worker_processes
   #   config_value: 8
 
+# gitlab_root_email: root@localhost
+# gitlab_root_password: CHANGEME
+
 gitlab_app_backup_cron: {}
   # minute: "0"
   # hour: "0"
