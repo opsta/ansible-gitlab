@@ -4,7 +4,7 @@ gitlab_package: gitlab-ce
 gitlab_package_dependencies:
   - curl
   - ca-certificates
-  - policycoreutils-python
+  - policycoreutils
   - openssh-server
   - cronie
 
