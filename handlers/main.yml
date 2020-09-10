@@ -18,3 +18,5 @@
   shell: gitlab-ctl reconfigure && gitlab-ctl restart
   retries: 5
   delay: 20
+  register: _gitlab_reconfigure
+  failed_when: _gitlab_reconfig.rc != 0
