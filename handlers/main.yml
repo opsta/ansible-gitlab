@@ -16,6 +16,8 @@
 
 - name: Reconfigure and restart GitLab
   shell: gitlab-ctl reconfigure && gitlab-ctl restart
+  vars:
+    ansible_command_timeout: 600
   retries: 5
   delay: 20
   register: _gitlab_reconfigure
