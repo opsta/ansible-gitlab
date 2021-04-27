@@ -22,7 +22,7 @@
   package:
     name: "{{ gitlab_package_dependencies }}"
     state: present
-    update_cache: yes
+    update_cache: yes #change from yes
   notify:
     - Start sshd
 

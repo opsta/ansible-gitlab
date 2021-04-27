@@ -3,3 +3,4 @@
   package:
     name: "{{ gitlab_package }}"
     state: present
+  become: yes

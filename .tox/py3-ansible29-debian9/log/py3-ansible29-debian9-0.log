@@ -1,0 +1,4 @@
+action: py3-ansible29-debian9, msg: getenv
+cwd: /Users/punnapop/Desktop/Opsta's Work/opsta-playbook(standalone)/ansible-gitlab/.tox
+cmd: /Users/punnapop/.virtualenvs/ansible/bin/python -m virtualenv --no-download --python /Users/punnapop/.virtualenvs/ansible/bin/python py3-ansible29-debian9
+ModuleNotFoundError: No module named 'virtualenv.seed.embed.via_app_data'

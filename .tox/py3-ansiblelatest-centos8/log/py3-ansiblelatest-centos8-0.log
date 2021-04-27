@@ -1,0 +1,25 @@
+action: py3-ansiblelatest-centos8, msg: getenv
+cwd: /Users/punnapop/Desktop/Opsta's Work/opsta-playbook(standalone)/ansible-gitlab/.tox
+cmd: /Users/punnapop/.virtualenvs/ansible/bin/python -m virtualenv --no-download --python /Users/punnapop/.virtualenvs/ansible/bin/python py3-ansiblelatest-centos8
+Fatal Python error: init_import_size: Failed to import the site module
+Python runtime state: initialized
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site.py", line 580, in <module>
+    main()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site.py", line 563, in main
+    known_paths = venv(known_paths)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site.py", line 495, in venv
+    addsitepackages(known_paths, [sys.prefix])
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site.py", line 350, in addsitepackages
+    addsitedir(sitedir, known_paths)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site.py", line 208, in addsitedir
+    addpackage(sitedir, name, known_paths)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site.py", line 160, in addpackage
+    f = io.TextIOWrapper(io.open_code(fullname))
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 779, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 874, in get_code
+  File "<frozen importlib._bootstrap_external>", line 973, in get_data
+KeyboardInterrupt

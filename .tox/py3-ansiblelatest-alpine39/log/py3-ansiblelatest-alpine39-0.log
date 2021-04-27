@@ -1,0 +1,4 @@
+action: py3-ansiblelatest-alpine39, msg: getenv
+cwd: /Users/punnapop/Desktop/Opsta's Work/opsta-playbook(standalone)/ansible-gitlab/.tox
+cmd: /Users/punnapop/.virtualenvs/ansible/bin/python -m virtualenv --no-download --python /Users/punnapop/.virtualenvs/ansible/bin/python py3-ansiblelatest-alpine39
+KeyboardInterrupt: 
