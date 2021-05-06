@@ -2,7 +2,7 @@
 #- name: Setup sshd not to accept password
 
 - name: Copy GitLab configuration file
-  template:
+  ansible.builtin.template:
     src: "{{ gitlab_host_config_file_path if gitlab_config_check.stat.exists else 'gitlab.rb.j2' }}"
     dest: "{{ gitlab_config_file_path }}"
     owner: root
@@ -11,7 +11,7 @@
   notify: Reconfigure and restart GitLab
 
 - name: Replace configurations
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ gitlab_config_file_path }}"
     state: present
     regexp: "^\\#* *{{ item.config_prefix }}\\['{{ item.config_key }}'\\] = (.*)$"
@@ -21,7 +21,7 @@
   notify: Reconfigure and restart GitLab
 
 - name: Copy GitLab SSL certificates
-  copy:
+  ansible.builtin.copy:
     src: "{{ gitlab_host_config_ssl_path }}"
     dest: "{{ gitlab_config_path }}"
   when:
@@ -30,7 +30,7 @@
   notify: Reconfigure and restart GitLab
 
 - name: Create backup path
-  file:
+  ansible.builtin.file:
     path: "{{ gitlab_config_backup_path }}"
     state: directory
     mode: 0700
@@ -38,7 +38,7 @@
     group: root
 
 - name: Setup cron to backup GitLab
-  cron:
+  ansible.builtin.cron:
     name: Backup GitLab
     minute: "{{ item.minute }}"
     hour: "{{ item.hour }}"
@@ -50,7 +50,7 @@
   when: gitlab_app_backup_cron is defined
 
 - name: Setup cron to backup GitLab configuration files
-  cron:
+  ansible.builtin.cron:
     name: Backup GitLab configuration files
     minute: "{{ item.minute }}"
     hour: "{{ item.hour }}"
@@ -62,7 +62,7 @@
   when: gitlab_config_backup_cron is defined
   
 - name: Setup cron to backup SSH host keys
-  cron:
+  ansible.builtin.cron:
     name: Backup SSH host keys
     minute: "{{ item.minute }}"
     hour: "{{ item.hour }}"

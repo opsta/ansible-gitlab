@@ -1,20 +1,20 @@
 ---
 - name: Start postfix
-  systemd:
+  ansible.builtin.systemd:
     name: postfix
     state: started
     enabled: yes
 
 - name: Start sshd
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ gitlab_ssh_service_name }}"
     state: started
     enabled: yes
 
 - name: Reconfigure GitLab
-  command: gitlab-ctl reconfigure
+  ansible.builtin.command: gitlab-ctl reconfigure
 
 - name: Reconfigure and restart GitLab
-  shell: gitlab-ctl reconfigure && gitlab-ctl restart
+  ansible.builtin.shell: gitlab-ctl reconfigure && gitlab-ctl restart
   retries: 5
   delay: 20

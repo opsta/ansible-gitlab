@@ -4,101 +4,61 @@ dependency:
 driver:
   name: docker
 platforms:
-  # - name: ubuntu16.04
-  #   image: geerlingguy/docker-ubuntu1604-ansible
-  #   tmpfs:
-  #     - /run
-  #     - /tmp
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #   capabilities:
-  #     - SYS_ADMIN
-  #   command: "/lib/systemd/systemd"
-  #   pre_build_image: true
+#  - name: ubuntu2004-instance
+#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu2004}-ansible:latest"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#    - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
 
-  - name: ubuntu1804-instance
-    image: geerlingguy/docker-ubuntu1804-ansible
-    tmpfs:
-      - /run
-      - /tmp
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    capabilities:
-      - SYS_ADMIN
-    command: "/lib/systemd/systemd"
-    pre_build_image: true
+#  - name: debian9-instance
+#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian9}-ansible:latest"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
+   
+#  - name: debian10-instance
+#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian10}-ansible:latest"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
 
-  # - name: ubuntu2004-instance
-  #   image: ubuntu:20.04
-  #   tmpfs:
-  #     - /run
-  #     - /tmp
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #   # capabilities:
-  #   #   - SYS_ADMIN
-  #   # command: "/lib/systemd/systemd"
-  #   pre_build_image: true
+#  - name: centos7-instance
+#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
 
-  # - name: debian8
-  #   image: paulfantom/debian-molecule:8
-  #   tmpfs:
-  #     - /run
-  #     - /tmp
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #   capabilities:
-  #     - SYS_ADMIN
-  #   command: "/lib/systemd/systemd"
-  #   pre_build_image: true
+#  - name: centos8-instance
+#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
 
-  # - name: debian9
-  #   image: paulfantom/debian-molecule:9
-  #   tmpfs:
-  #     - /run
-  #     - /tmp
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #   capabilities:
-  #     - SYS_ADMIN
-  #   command: "/lib/systemd/systemd"
-  #   pre_build_image: true
+#  - name: rhel7-instance
+#    image: "registry.access.redhat.com/ubi7/ubi-init"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
 
-  # - name: debian10
-  #   image: paulfantom/debian-molecule:10
-  #   tmpfs:
-  #     - /run
-  #     - /tmp
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #   capabilities:
-  #     - SYS_ADMIN
-  #   command: "/lib/systemd/systemd"
-  #   pre_build_image: true
-  
-  # - name: centos7
-  #   image: geerlingguy/docker-centos7-ansible
-  #   tmpfs:
-  #     - /run
-  #     - /tmp
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #   capabilities:
-  #     - SYS_ADMIN
-  #   command: "/usr/sbin/init"
-  #   pre_build_image: true
-
-  # - name: centos8
-  #   image: geerlingguy/docker-centos8-ansible
-  #   tmpfs:
-  #     - /run
-  #     - /tmp
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #   capabilities:
-  #     - SYS_ADMIN
-  #   command: "/usr/sbin/init"
-  #   pre_build_image: true
+#  - name: rhel8-instance
+#    image: "registry.access.redhat.com/ubi8/ubi-init"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
 
 provisioner:
   name: ansible
