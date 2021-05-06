@@ -10,7 +10,7 @@
   register: gitlab_config_check
   become: false
   delegate_to: 127.0.0.1
-  ansible.builtin.first_found:
+  with_first_found:
     - files: "{{ gitlab_search_config_paths }}"
       skip: true
 
