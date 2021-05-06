@@ -1,8 +1,22 @@
 ---
-- name: Converge (Run role)
+- name: Converge
   hosts: all
-  any_errors_fatal: true
-  gather_facts: true
-  become: true
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+    - name: whoami
+      shell: whoami
+      register: whoami
+
+    - debug: var=whoami
+
+    - name: Remove the .dockerenv file so GitLab Omnibus doesn't get confused.
+      file:
+        path: /.dockerenv
+        state: absent
+
   roles:
-    - ansible-gitlab
+    - role: ansible-gitlab
