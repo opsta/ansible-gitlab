@@ -1,6 +1,6 @@
 ---
 gitlab_use_external_smtp: false
-gitlab_external_url: "http://localhost"
+gitlab_external_url: "https://gitlab.example.com"
 gitlab_roles: ""
 gitlab_rb_configs: {
 }
