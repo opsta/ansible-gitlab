@@ -4,29 +4,17 @@ dependency:
 driver:
   name: docker
 platforms:
-#  - name: ubuntu2004-instance
-#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu2004}-ansible:latest"
-#    command: ${MOLECULE_DOCKER_COMMAND:-""}
-#    volumes:
-#    - /sys/fs/cgroup:/sys/fs/cgroup:ro
-#    privileged: true
-#    pre_build_image: true
-
-#  - name: debian9-instance
-#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian9}-ansible:latest"
-#    command: ${MOLECULE_DOCKER_COMMAND:-""}
-#    volumes:
-#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-#    privileged: true
-#    pre_build_image: true
-   
-#  - name: debian10-instance
-#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian10}-ansible:latest"
-#    command: ${MOLECULE_DOCKER_COMMAND:-""}
-#    volumes:
-#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-#    privileged: true
-#    pre_build_image: true
+ - name: ubuntu2004-instance
+   image: "geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu2004}-ansible:latest"
+   command: ${MOLECULE_DOCKER_COMMAND:-""}
+   volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro 
+   privileged: true
+   pre_build_image: true
+   exposed_ports:
+    - 80/tcp
+   published_ports:
+    - 0.0.0.0:80:80/tcp
 
 #  - name: centos7-instance
 #    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
@@ -35,6 +23,10 @@ platforms:
 #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
 #    privileged: true
 #    pre_build_image: true
+#    exposed_ports:
+#     - 80/tcp
+#    published_ports:
+#     - 0.0.0.0:80:80/tcp
 
 #  - name: centos8-instance
 #    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
@@ -43,22 +35,34 @@ platforms:
 #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
 #    privileged: true
 #    pre_build_image: true
+#    exposed_ports:
+#     - 80/tcp
+#    published_ports:
+#     - 0.0.0.0:80:80/tcp
 
-#  - name: rhel7-instance
+#  - name: rhel7instance
 #    image: "registry.access.redhat.com/ubi7/ubi-init"
 #    command: ${MOLECULE_DOCKER_COMMAND:-""}
 #    volumes:
 #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
 #    privileged: true
 #    pre_build_image: true
+#    exposed_ports:
+#     - 80/tcp
+#    published_ports:
+#     - 0.0.0.0:80:80/tcp
 
-#  - name: rhel8-instance
+#  - name: rhel8instance
 #    image: "registry.access.redhat.com/ubi8/ubi-init"
 #    command: ${MOLECULE_DOCKER_COMMAND:-""}
 #    volumes:
 #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
 #    privileged: true
 #    pre_build_image: true
+#    exposed_ports:
+#     - 80/tcp
+#    published_ports:
+#     - 0.0.0.0:80:80/tcp
 
 provisioner:
   name: ansible
@@ -69,7 +73,6 @@ provisioner:
         - meta/
   playbooks:
     create: create.yml
-    prepare: prepare.yml
     converge: converge.yml
     destroy: destroy.yml
 verifier:
