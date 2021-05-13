@@ -34,7 +34,8 @@
     - Start postfix
   when: not gitlab_use_external_smtp
 
-- meta: flush_handlers
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Run script to check system and add repository for GitLab CE
   ansible.builtin.shell: "curl -L -s {{ gitlab_script_url }} | bash"

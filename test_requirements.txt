@@ -1,0 +1,6 @@
+docker
+molecule==3.3.0
+molecule-docker
+ansible-lint>=5.0.0
+yamllint>1.24
+tox

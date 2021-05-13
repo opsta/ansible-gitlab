@@ -39,5 +39,7 @@
         path: /.dockerenv
         state: absent
 
-  roles:
-    - role: ansible-gitlab
+  tasks:
+    - name: "ansible-gitlab role"
+      include_role:
+        name: "ansible-gitlab"
