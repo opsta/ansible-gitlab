@@ -42,3 +42,5 @@
   args:
     # Not to warn about using get_url
     warn: false
+  tags:
+    - molecule-idempotence-notest

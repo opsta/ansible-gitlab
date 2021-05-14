@@ -36,6 +36,8 @@
     mode: 0700
     owner: root
     group: root
+  tags:
+    = molecule-idempotence-notest
 
 - name: Setup cron to backup GitLab
   ansible.builtin.cron:
