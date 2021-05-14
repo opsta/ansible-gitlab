@@ -38,7 +38,7 @@
       ansible.builtin.file:
         path: /.dockerenv
         state: absent
-        
+
   tasks:
     - name: "ansible-gitlab role"
       include_role:

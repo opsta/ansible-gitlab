@@ -1,0 +1,9 @@
+exclude_paths:
+ - .cache/
+ - .tox/
+ - .molecule/
+ - .gitignore
+
+warn_list:
+ - '201'  # Trailing whitespace                                             │
+ - '204'  # Lines should be no longer than 160 chars  
