@@ -15,7 +15,7 @@ jobs:
       - name: Molecule lint
         uses: gofrolist/molecule-action@v2
         with:
-          molecule_options: --debug --env-file .yamllint
+          molecule_options: --debug --base-config .yamllint
           molecule_command: lint
       - name: Molecule create
         uses: gofrolist/molecule-action@v2
