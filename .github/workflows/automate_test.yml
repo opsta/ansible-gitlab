@@ -27,7 +27,7 @@ jobs:
         with:
           molecule_options: --debug
           molecule_command: converge
-       - name: Robot Framework
+      - name: Robot Framework
         uses: joonvena/robotframework-docker-action@v0.1
         env:
           BROWSER: chrome
