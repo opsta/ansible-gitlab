@@ -31,7 +31,7 @@ jobs:
         uses: joonvena/robotframework-docker-action@v0.1
         env:
           BROWSER: chrome
-          ROBOT_TESTS_DIR: ../../robot/test-set-root-password
+          ROBOT_TESTS_DIR: robot/test-set-root-password
           ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
       - name: Molecule destroy
         uses: gofrolist/molecule-action@v2
