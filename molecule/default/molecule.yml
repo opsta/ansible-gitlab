@@ -73,17 +73,7 @@ provisioner:
     converge: converge.yml
     destroy: destroy.yml
 verifier:
-  name: robotframework
-  libraries:
-    - SeleniumLibrary
-    - OperatingSystem
-  test_data:
-    - ../../robot/test-set-root-password-and-login/
-  options:
-    exitonerror: yes
-    exclude: bogus
-  data_sources:
-    - test_set_root_password_and_login.robot
+  name: ansible
 lint: |
   set -e
   yamllint .
