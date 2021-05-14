@@ -62,7 +62,7 @@
     job: umask 0077; tar cfz {{ gitlab_config_backup_path }}/$(date "+etc-gitlab-\%s.tgz") -C / etc/gitlab
   with_items: "{{ gitlab_config_backup_cron }}"
   when: gitlab_config_backup_cron is defined
-  
+
 - name: Setup cron to backup SSH host keys
   ansible.builtin.cron:
     name: Backup SSH host keys

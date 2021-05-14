@@ -4,17 +4,17 @@
 
   pre_tasks:
     - name: Update apt cache
-      ansible.builtin.apt: 
-       update_cache: true 
+      ansible.builtin.apt:
+       update_cache: true
        cache_valid_time: 600
       when: ansible_os_family == 'Debian'
       changed_when: false
 
     - name: Update yum cache
-      ansible.builtin.yum: 
+      ansible.builtin.yum:
         update_cache: yes
       when: ansible_os_family == 'RedHat'
-    
+
     - name: Install hostname
       ansible.builtin.package:
         name: hostname
@@ -38,7 +38,7 @@
       ansible.builtin.file:
         path: /.dockerenv
         state: absent
-
+        
   tasks:
     - name: "ansible-gitlab role"
       include_role:
