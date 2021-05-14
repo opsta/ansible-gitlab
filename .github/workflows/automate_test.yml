@@ -1,0 +1,40 @@
+name: Gitlab install and User acceptance test
+on:
+  push:
+    branches:
+      - master
+      - dev
+jobs:
+  automate_test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: "${{ github.repository }}"
+      - name: Molecule lint
+        uses: gofrolist/molecule-action@v2
+        with:
+          molecule_options: --debug
+          molecule_command: lint
+      - name: Molecule create
+        uses: gofrolist/molecule-action@v2
+        with:
+          molecule_options: --debug
+          molecule_command: create
+      - name: Molecule converge
+        uses: gofrolist/molecule-action@v2
+        with:
+          molecule_options: --debug
+          molecule_command: converge
+       - name: Robot Framework
+        uses: joonvena/robotframework-docker-action@v0.1
+        env:
+          BROWSER: chrome
+          ROBOT_TESTS_DIR: ../../robot/test-set-root-password
+          ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
+      - name: Molecule destroy
+        uses: gofrolist/molecule-action@v2
+        with:
+          molecule_options: --debug
+          molecule_command: destroy
