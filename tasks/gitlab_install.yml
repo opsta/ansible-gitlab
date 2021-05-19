@@ -1,5 +1,5 @@
 ---
 - name: Install Gitlab CE
-  package:
+  ansible.builtin.package:
     name: "{{ gitlab_package }}"
     state: present
