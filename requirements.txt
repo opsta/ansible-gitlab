@@ -1,0 +1,11 @@
+molecule
+molecule-docker
+molecule-robotframework
+robotframework-seleniumlibrary
+webdrivermanager
+ansible-lint
+yamllint
+tox
+jmespath
+pytest
+testinfra

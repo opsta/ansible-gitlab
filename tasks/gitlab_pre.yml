@@ -2,13 +2,13 @@
 - block: # Firewall Configuration for RedHat
 
   - name: Ensure firewalld is enabled
-    systemd:
+    ansible.builtin.systemd:
       name: firewalld
       state: started
       enabled: yes
 
   - name: Allow some firewall to using
-    firewalld:
+    ansible.posix.firewalld:
       service: "{{ item }}"
       permanent: true
       state: enabled
@@ -19,7 +19,7 @@
 
 
 - name: Install GitLab dependencies
-  package:
+  ansible.builtin.package:
     name: "{{ gitlab_package_dependencies }}"
     state: present
     update_cache: yes
@@ -27,7 +27,7 @@
     - Start sshd
 
 - name: Install Postfix
-  package:
+  ansible.builtin.package:
     name: postfix
     state: present
   notify:
@@ -37,7 +37,9 @@
 - meta: flush_handlers
 
 - name: Run script to check system and add repository for GitLab CE
-  shell: "curl -L -s {{ gitlab_script_url }} | bash"
+  ansible.builtin.shell: "curl -L -s {{ gitlab_script_url }} | bash"
   args:
     # Not to warn about using get_url
     warn: false
+  tags:
+    - molecule-idempotence-notest

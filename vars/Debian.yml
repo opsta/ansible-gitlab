@@ -5,6 +5,7 @@ gitlab_package_dependencies:
   - curl
   - ca-certificates
   - openssh-server
+  - gpg-agent
 
 gitlab_script_url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
 

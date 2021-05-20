@@ -1,0 +1,108 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  # Test with Tox
+ - name: ${TOX_ENVNAME}-instance
+   image: ${MOLECULE_DISTRO}
+   command: ${MOLECULE_DOCKER_COMMAND:-""}
+   volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro 
+   privileged: true
+   pre_build_image: true
+   exposed_ports:
+    - 80/tcp
+   published_ports:
+    - 0.0.0.0:80:80/tcp
+
+#  - name: ubuntu2004-instance
+#    image: "geerlingguy/docker-ubuntu2004-ansible"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
+#    exposed_ports:
+#     - 80/tcp
+#    published_ports:
+#     - 0.0.0.0:80:80/tcp
+
+#  - name: centos7-instance
+#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
+#    exposed_ports:
+#     - 80/tcp
+#    published_ports:
+#     - 0.0.0.0:80:80/tcp
+
+#  - name: centos8-instance
+#    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
+#    exposed_ports:
+#     - 80/tcp
+#    published_ports:
+#     - 0.0.0.0:80:80/tcp
+
+#  - name: rhel7instance
+#    image: "registry.access.redhat.com/ubi7/ubi-init"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
+#    exposed_ports:
+#     - 80/tcp
+#    published_ports:
+#     - 0.0.0.0:80:80/tcp
+
+#  - name: rhel8instance
+#    image: "registry.access.redhat.com/ubi8/ubi-init"
+#    command: ${MOLECULE_DOCKER_COMMAND:-""}
+#    volumes:
+#     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+#    privileged: true
+#    pre_build_image: true
+#    exposed_ports:
+#     - 80/tcp
+#    published_ports:
+#     - 0.0.0.0:80:80/tcp
+
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  playbooks:
+    create: create.yml
+    converge: converge.yml
+    destroy: destroy.yml
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
+    enabled: true
+# verifier:
+#   name: robotframework
+#   libraries:
+#     - robotframework-seleniumlibrary
+#   test_data:
+#     - ${MOLECULE_SCENARIO_DIRECTORY}/robot/test-set-root-password-and-login/
+#   options:
+#     exitonerror: yes
+#     exclude: bogus
+#     report: index.html
+#   data_sources:
+#     - test_set_root_password_and_login.robot

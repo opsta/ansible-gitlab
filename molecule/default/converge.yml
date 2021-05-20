@@ -1,0 +1,45 @@
+---
+- name: Converge
+  hosts: all
+
+  pre_tasks:
+    - name: Update apt cache
+      ansible.builtin.apt: 
+       update_cache: true 
+       cache_valid_time: 600
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+
+    - name: Update yum cache
+      ansible.builtin.yum: 
+        update_cache: yes
+      when: ansible_os_family == 'RedHat'
+    
+    - name: Install hostname
+      ansible.builtin.package:
+        name: hostname
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: Install firewalld
+      ansible.builtin.package:
+        name: firewalld
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: Enable firewalld
+      ansible.builtin.systemd:
+        name: firewalld
+        enabled: yes
+        state: started
+      when: ansible_os_family == "RedHat"
+
+    - name: Remove the .dockerenv file so GitLab Omnibus doesn't get confused.
+      ansible.builtin.file:
+        path: /.dockerenv
+        state: absent
+
+  tasks:
+    - name: "ansible-gitlab role"
+      include_role:
+        name: "ansible-gitlab"

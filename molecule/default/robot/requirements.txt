@@ -1,0 +1,12 @@
+selenium
+PyYAML
+pyvirtualdisplay
+robotframework
+robotframework-databaselibrary
+robotframework-httplibrary
+robotframework-requests
+robotframework-scplibrary
+robotframework-selenium2library
+robotframework-seleniumlibrary
+robotframework-sshlibrary
+robotframework-xvfb
