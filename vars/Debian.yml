@@ -1,11 +1,19 @@
 ---
-gitlab_package: gitlab-ce
+package_url_map:
+  ce: gitlab-ce
+  ee: gitlab-ee
+
+gitlab_package: "{{ package_url_map[gitlab_edition] }}"
 
 gitlab_package_dependencies:
   - curl
   - ca-certificates
   - openssh-server
 
-gitlab_script_url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+script_url_map:
+  ce: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+  ee: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh
+
+gitlab_script_url: "{{ script_url_map[gitlab_edition] }}"
 
 gitlab_ssh_service_name: ssh

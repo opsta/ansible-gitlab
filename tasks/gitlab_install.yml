@@ -1,5 +1,5 @@
 ---
-- name: Install Gitlab CE
+- name: Install Gitlab
   package:
     name: "{{ gitlab_package }}"
     state: present

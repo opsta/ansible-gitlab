@@ -36,7 +36,7 @@
 
 - meta: flush_handlers
 
-- name: Run script to check system and add repository for GitLab CE
+- name: Run script to check system and add repository for GitLab
   shell: "curl -L -s {{ gitlab_script_url }} | bash"
   args:
     # Not to warn about using get_url
